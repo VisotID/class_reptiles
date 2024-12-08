@@ -1,73 +1,156 @@
-#pragma once
-#include <string>
+// Высоцкая И.Д.
+#pragma once // директива в С++, для предотвращения многократного включения одного и того же заголовочного файла
+#include <string> // библиотека С++ для работы со строками
 
 using namespace std;
 
+// Класс -  общность полей и методов(поля - данные, методы - функции)
+// Базовый(родительский) класс
 class Reptiles {
+    // область класса, где данные защищены от доступа функций, расположенных вне класса(принцип сокрытия)
 private:
-	string Title;
-	float Length;
-	float Weight;
-	int Age;
-	string Diet;
-	string Area;
+	string Title; // название вида
+	float Length; // длина
+	float Weight; // вес
+	int Age; // возраст
+	string Diet; // рацион питания
+	string Area; // ареал обитания
+	// область класса, данные в которой доступны за пределами класса
 public:
 
+	// Конструктор по умолчанию
 	Reptiles();
 
+	/// Конструктор с параметрами
+	/// string title - название вида, float length - длина, float weight - вес, int age - возраст, string diet - рацион питания, string area - ареал обитания
 	Reptiles(string title, float length, float weight, int age, string diet, string area);
 
+	/// Метод инициализации названия вида
+	/// string title - название вида
 	void set_title(string title);
+
+	/// Метод инициализации длины
+	/// float length - длина
 	void set_length(float length);
+
+	/// Метод инициализации веса
+	/// float weight - вес
 	void set_weight(float weight);
+
+	/// Метод инициализации возраста
+	/// int age - возраст
 	void set_age(int age);
+
+	/// Метод инициализации рациона питания
+	/// string diet - рацион питания
 	void set_diet(string diet);
+
+	/// Метод инициализации ареала обитания
+	/// string area - ареал обитания
 	void set_area(string area);
 
+	/// Метод для просмотра названия вида
+	/// const для того, чтобы не изменилось поле класса title - название вида
 	string get_title() const;
+
+	/// Метод для просмотра значения длины
+	/// const для того, чтобы не изменилось поле класса length - длина
 	float get_length() const;
+
+	/// Метод для просмотра значения веса
+	/// const для того, чтобы не изменилось поле класса weight - вес
 	float get_weight() const;
+
+	/// Метод для просмотра значения возраста
+	/// const для того, чтобы не изменилось поле класса age - возраст
 	int get_age() const;
+
+	/// Метод для просмотра рациона питания
+	/// const для того, чтобы не изменилось поле класса diet - рацион питания
 	string get_diet() const;
+
+	/// Метод для просмотра ареала обитания
+	/// const для того, чтобы не изменилось поле класса area - ареал обитания
 	string get_area() const;
 
+	/// Виртуальный метод для перевода в строку
+	/// virtual - ключевое слово, виртуальный метод для возможного переопределения в классах-потомках(полиморфизм), const для того, чтобы не изменились поля класса
 	virtual string to_string() const;
 
+	/// Метод для вывода на экран строки "Спит."
+	/// const для того, чтобы не изменились поля класса
 	void sleep() const;
 };
 
+// Производный(дочерний) класс
+// public - производному классу доступны поля и методы из области базового класса public, поля и методы из области private не доступны прямым обращением к ним
 class Snakes :public Reptiles
 {
+	// область класса, где данные защищены от доступа функций, расположенных вне класса(принцип сокрытия)
 private:
-	bool Venom;
-	bool Night_life;
+	bool Venom; // яд
+	bool Night_life; // ночной образ жизни
+	// область класса, данные в которой доступны за пределами класса
 public:
 
+	/// Метод для вывода на экран строки "Спит как змейка."
+	/// const для того, чтобы не изменились поля класса
+	void sleep() const;
+
+	// Конструктор по умолчанию
 	Snakes();
 
+	/// Конструктор с параметрами
+	/// string title - название вида, float length - длина, float weight - вес, int age - возраст, string diet - рацион питания, string area - ареал обитания, bool venom - яд, bool night_life - ночной образ жизни
 	Snakes(string title, float length, float weight, int age, string diet, string area, bool venom, bool night_life);
 
+	/// Метод инициализации значения яда
+	/// bool venom - наличие яда(1 - есть, 0 - нет)
 	void set_venom(bool venom);
+
+	/// Метод инициализации названия ночного образа жизни
+	/// bool night_life - ночной образ жизни если 1, дневной если 0
 	void set_night_life(bool night_life);
 
+	/// Метод для просмотра значения наличия яда
+	/// const для того, чтобы не изменилось поле класса venom - яд
 	bool get_venom() const;
+
+	/// Метод для просмотра значения ночного образа жизни
+	/// const для того, чтобы не изменилось поле класса night_life - ночной образ жизни
 	bool get_night_life() const;
 
+	/// Переопределённый метод для перевода в строку
+	/// override - ключевое слово, переопределённый метод, const для того, чтобы не изменились поля класса
 	string to_string() const override;
 };
 
+// Производный(дочерний) класс
+// public - производному классу доступны поля и методы из области базового класса public, поля и методы из области private не доступны прямым обращением к ним
 class Turtles :public Reptiles
 {
+	// область класса, где данные защищены от доступа функций, расположенных вне класса(принцип сокрытия)
 private:
-	string Shell;
+	string Shell; // описание панциря
+	// область класса, данные в которой доступны за пределами класса
 public:
+
+	// Конструктор по умолчанию
 	Turtles();
 
+	/// Конструктор с параметрами
+	/// string title - название вида, float length - длина, float weight - вес, int age - возраст, string diet - рацион питания, string area - ареал обитания, string shell - описание панциря
 	Turtles(string title, float length, float weight, int age, string diet, string area, string shell);
 
+	/// Метод инициализации описания панциря
+	/// string shell - описание панциря
 	void set_shell(string shell);
 
+	/// Метод для просмотра описания панциря
+	/// const для того, чтобы не изменилось поле класса shell - описание панциря
 	string get_shell() const;
 
+	/// Переопределённый метод для перевода в строку
+	/// override - ключевое слово, переопределённый метод, const для того, чтобы не изменились поля класса
 	string to_string() const override;
 };
